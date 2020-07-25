@@ -65,15 +65,12 @@ namespace KazanMobileSession1_25_07
             {
                 if (pAssetGroups.SelectedItem == null || pAssetGroups.SelectedItem.ToString() == "No Filter")
                 {
-                    var filteredList = (from x in _assetList
-                                        where x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text)
-                                        select x).ToList();
-                    lvAssets.ItemsSource = filteredList;
+                    lvAssets.ItemsSource = _assetList;
                 }
                 else
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetGroup == pAssetGroups.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetGroup == pAssetGroups.SelectedItem.ToString() 
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
@@ -83,14 +80,14 @@ namespace KazanMobileSession1_25_07
                 if (pAssetGroups.SelectedItem == null || pAssetGroups.SelectedItem.ToString() == "No Filter")
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString()
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
                 else
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && x.AssetGroup == pAssetGroups.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && x.AssetGroup == pAssetGroups.SelectedItem.ToString() 
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
@@ -104,15 +101,12 @@ namespace KazanMobileSession1_25_07
             {
                 if (pDepartment.SelectedItem == null || pDepartment.SelectedItem.ToString() == "No Filter")
                 {
-                    var filteredList = (from x in _assetList
-                                        where x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text)
-                                        select x).ToList();
-                    lvAssets.ItemsSource = filteredList;
+                    lvAssets.ItemsSource = _assetList;
                 }
                 else
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() 
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
@@ -122,14 +116,14 @@ namespace KazanMobileSession1_25_07
                 if (pDepartment.SelectedItem == null || pDepartment.SelectedItem.ToString() == "No Filter")
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetGroup == pAssetGroups.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetGroup == pAssetGroups.SelectedItem.ToString() 
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
                 else
                 {
                     var filteredList = (from x in _assetList
-                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && x.AssetGroup == pAssetGroups.SelectedItem.ToString() && (x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text))
+                                        where x.AssetDepartment == pDepartment.SelectedItem.ToString() && x.AssetGroup == pAssetGroups.SelectedItem.ToString() 
                                         select x).ToList();
                     lvAssets.ItemsSource = filteredList;
                 }
@@ -154,7 +148,10 @@ namespace KazanMobileSession1_25_07
             }
             else
             {
-                pAssetGroups_SelectedIndexChanged(null, null);
+                var filteredList = (from x in _assetList
+                                    where x.AssetName.Contains(sbSearch.Text) || x.AssetSN.Contains(sbSearch.Text)
+                                    select x).ToList();
+                lvAssets.ItemsSource = filteredList;
             }
         }
 
